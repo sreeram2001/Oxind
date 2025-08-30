@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Following line of code is important for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Oxind Volunteer</title>
+
+    <!-- Linking font awesome CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!--Linking animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+
+    <!--Linking CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="brand"><span>Welcome</span>Volunteer</h1>
+    <div class="wrapper">
+      <!-- Company Information -->
+      <div class="company-info">
+        <h3></h3>
+
+      </div>
+
+      <!-- Contact-->
+      <div class="contact">
+        <h3>Enter the details here</h3>
+        <div class="alert">thank you for your contribution</div>
+        <form id="contactForm">
+          <p>
+            <label>Provider Name</label>
+            <input type="text" name="name" id="name" required>
+          </p>
+          <p>
+            <label>Provider Address</ADDRESS></label>
+            <input type="text" name="address" id="address">
+          </p>
+          <p>
+            <label>Landmark</label>
+            <input type="text" name="landmark" id="landmark">
+          </p>
+          <p>
+            <label>City (use lowercase)</label>
+            <input type="text" name="city" id="city" required >
+          </p>
+          <p>
+            <label>State (use lower case)</label>
+            <input type="text" name="state" id="state">
+          </p>
+          <p>
+            <label>Phone Number</label>
+            <input type="text" name="phone" id="phone">
+          </p>
+          <p>
+            <label>Oxygen type</label>
+            <input type="text" name="type" id="type">
+          </p>
+          <p>
+            <label>Oxygen Quantity</label>
+            <input type="text" name="quantity" id="quantity">
+          </p>
+          <p class="full">
+            <button type="submit">Submit</button>
+          </p>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!--Make sure to include the firebase js abve main.js -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+  <script src="main.js"></script>
+</body>
+</html>

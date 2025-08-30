@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <title>User Login</title>
+        <link rel="stylesheet" href="login.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div class="inner-box" id="card">
+                    <div class="card-front">
+                        <center><h1>Login As User</h1></center><br>
+                        <form>
+                            <input type="email" class="input-box" placeholder="Enter your Email-Id" required>
+                            <input type="password" class="input-box" placeholder="Enter your Password" required>
+                            <button type="submit" class="login-btn" onclick="location.href='user.html' ; ">Login</button>
+
+                        </form>
+                        <button type="button" class="btn" onclick="openRegister()">New User ? Register Here</button>
+                        <a href="">Forgot Password</a>
+
+                    </div>
+
+                    <div class="card-back">
+
+                        <center><h1>Register As User</h1></center><br>
+                        <form>
+                            <input type="text" id="name" class="input-box" placeholder="Enter your Name" required>
+
+                            <input type="email" id="email" class="input-box" placeholder="Enter your Email-Id" required>
+                            <input type="password" id="password" class="input-box" placeholder="Enter your Password" required>
+                            <button type="submit" class="login-btn">Submit</button>
+
+                        </form>
+                        <button type="button" class="btn" onclick="openLogin()">Already Have an Account ? Login</button>
+                        <a href="">Forgot Password</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+<script>
+
+var card = document.getElementById("card");
+var email =  document.getElementById("email");
+var password =  document.getElementById("password");
+
+
+
+function openRegister()
+{   
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    console.log(error.code);
+    console.log(error.message);
+    if (error.code = 200) {
+        window.location.pathname = '/';
+    }
+    else {
+        window.location.pathname = 'login.html';
+    }
+});
+    card.style.transform = "rotateY(-180deg)";
+}
+
+
+function openLogin()
+{
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    console.log(error.code);
+    console.log(error.message);
+    });
+    if (error.code = 200) {
+        window.location.pathname = '/';
+    }
+    else {
+        window.location.pathname = 'login.html';
+    }
+    card.style.transform = "rotateY(0deg)";
+}
+
+</script>
+
+
+<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.16.0/js/md5.min.js"></script>
+
+            
+            <script>
+              
+                var firebaseConfig = {
+                  apiKey: "AIzaSyBFz08XTX6xwItjdgNcZsW3LYYfg1CJjEc",
+                  authDomain: "covid-oxy.firebaseapp.com",
+                  databaseURL: "https://covid-oxy-default-rtdb.firebaseio.com",
+                  projectId: "covid-oxy",
+                  storageBucket: "covid-oxy.appspot.com",
+                  messagingSenderId: "289037954196",
+                  appId: "1:289037954196:web:ebb39e5ae4f697af079881",
+                  measurementId: "G-W3WCXWHP9V"
+                };
+                
+
+                firebase.initializeApp(firebaseConfig);
+                
+              </script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+
+    <script src="main.js"></script>
+
+
+
+    </body>
+</html>

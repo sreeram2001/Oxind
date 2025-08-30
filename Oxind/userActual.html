@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <nav>
+            <div class="container">
+                <h1>Oxygen</h1>
+                <button onclick="slide()"></button>
+            </div>
+        </nav>
+
+        <nav>
+            <form id="contactForm">
+            <div class="container">
+            <input type="text" name="state" id="state" placeholder="Enter State" style="margin-top: 10px;">
+            <br>
+        
+            <input type="text" name="city" id="city"placeholder="Enter City" style="margin-top: 10px;">
+            <p class="full">
+                <button type="submit">Submit</button>
+            </p>
+            </form>
+            </nav>
+
+        </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="container">
+        
+        <table class="table table-dark text-white">
+            <thead>
+                <th>Provider</th>
+                <th>Phone Number</th>
+                <th>Oxygen Quantity</th>
+                <th>Oxygen Type</th>
+                <th>Landmark</th>
+                <th>Address</th>
+            </thead>
+
+            <tbody id="tbody1">
+
+
+            </tbody>
+
+
+
+        </table>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
+
+        <script src="search.js"></script>
+
+
+        <script id="MainScript">
+
+            var firebaseConfig = {
+              apiKey: "AIzaSyBFz08XTX6xwItjdgNcZsW3LYYfg1CJjEc",
+              authDomain: "covid-oxy.firebaseapp.com",
+              databaseURL: "https://covid-oxy-default-rtdb.firebaseio.com",
+              projectId: "covid-oxy",
+              storageBucket: "covid-oxy.appspot.com",
+              messagingSenderId: "289037954196",
+              appId: "1:289037954196:web:ebb39e5ae4f697af079881",
+              measurementId: "G-W3WCXWHP9V"
+            };
+           
+            firebase.initializeApp(firebaseConfig);
+            //Listen for the form submit
+            document.getElementById('contactForm').addEventListener('submit', submitForm);
+
+            function submitForm(e) {
+                e.preventDefault();
+
+
+                var state = getInputValues('state');
+                var city = getInputValues('city');
+
+                SelectAllData(state, city);
+
+                document.getElementById('contactForm').reset();
+
+            }
+
+            function getInputValues(id) {
+                return document.getElementById(id).value;
+                }
+
+
+            function SelectAllData(state,city)
+            {
+                firebase.database().ref('users').child(city).child(state).once('value',
+                
+                function(AllRecords)
+                {
+                    AllRecords.forEach(
+                        function(CurrentRecord)
+                        {
+                            var provider = CurrentRecord.val().name;
+                            var number = CurrentRecord.val().phone;
+                            var quantity = CurrentRecord.val().quantity;
+                            var type = CurrentRecord.val().type;
+                            var landmark = CurrentRecord.val().state;
+                            var address = CurrentRecord.val().address;
+
+                            AddItemsToTable(provider,number,quantity,type,landmark,address);
+
+                        }
+
+                    );
+
+                });
+            }
+
+            window.onload = SelectAllData;
+
+
+            function AddItemsToTable(provider,number,quantity,type,landmark,address)
+            {
+                var tbody = document.getElementById('tbody1');
+                var trow = document.createElement('tr');
+
+                var td1 = document.createElement('td');
+                var td2 = document.createElement('td');
+                var td3 = document.createElement('td');
+                var td4 = document.createElement('td');
+                var td5 = document.createElement('td');
+                var td6 = document.createElement('td');
+                var td7 = document.createElement('td');
+                var td8 = document.createElement('td');
+                
+    
+                td1.innerHTML = provider;
+                td2.innerHTML = number;
+                td3.innerHTML = quantity;
+                td4.innerHTML = type;
+                td5.innerHTML = landmark;
+                td6.innerHTML = address;
+                
+                 trow.appendChild(td1);
+                 trow.appendChild(td2); 
+                 trow.appendChild(td3); 
+                 trow.appendChild(td4); 
+                 trow.appendChild(td5); 
+                 trow.appendChild(td6); 
+
+                tbody.appendChild(trow);
+
+            
+            }
+
+        </script>
+
+
+    </body>
+
+</html>
